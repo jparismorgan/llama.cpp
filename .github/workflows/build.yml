@@ -85,8 +85,11 @@ jobs:
         if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
         run: |
           pwd
+          echo "============================== ls:"
           ls
+          echo "============================== ls ./build:"
           ls ./build
+          echo "============================== ls ./build/bin:"
           ls ./build/bin
           
           # Navigate to the directory with the build artifacts
@@ -251,8 +254,11 @@ jobs:
         if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
         run: |
           pwd
+          echo "============================== ls:"
           ls
+          echo "============================== ls ./build:"
           ls ./build
+          echo "============================== ls ./build/bin:"
           ls ./build/bin
 
           # Navigate to the directory with the build artifacts
