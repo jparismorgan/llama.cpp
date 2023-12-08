@@ -93,12 +93,16 @@ jobs:
           ls ./build/bin
           
           # Navigate to the directory with the build artifacts
-          cd ./build/bin/Release
-
+          cd ./build/bin
+          
+          echo "============================== ls pwd"
           pwd
 
           # Create a compressed archive of the contents of the Release directory
           zip -r llama-${{ steps.tag.outputs.name }}-bin-ubuntu.zip ./*
+
+          echo "============================== ls pwd"
+          pwd
         
       - name: Upload artifacts
         if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
@@ -262,12 +266,16 @@ jobs:
           ls ./build/bin
 
           # Navigate to the directory with the build artifacts
-          cd ./build/bin/Release
+          cd ./build/bin
 
+          echo "============================== ls pwd"
           pwd
 
           # Create a compressed archive of the contents of the Release directory
           zip -r llama-${{ steps.tag.outputs.name }}-bin-mac-x86.zip ./*
+
+          echo "============================== ls pwd"
+          pwd
         
       - name: Upload artifacts
         if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
