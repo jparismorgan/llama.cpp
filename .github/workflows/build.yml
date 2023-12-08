@@ -92,17 +92,11 @@ jobs:
           echo "============================== ls ./build/bin:"
           ls ./build/bin
           
-          # Navigate to the directory with the build artifacts
-          cd ./build/bin
-          
-          echo "============================== ls pwd"
-          pwd
-
           # Create a compressed archive of the contents of the Release directory
-          zip -r llama-${{ steps.tag.outputs.name }}-bin-ubuntu.zip ./*
+          zip -r llama-${{ steps.tag.outputs.name }}-bin-ubuntu.zip ./build/bin/*
 
-          echo "============================== ls pwd"
-          pwd
+          echo "============================== ls"
+          ls
         
       - name: Upload artifacts
         if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
@@ -265,17 +259,11 @@ jobs:
           echo "============================== ls ./build/bin:"
           ls ./build/bin
 
-          # Navigate to the directory with the build artifacts
-          cd ./build/bin
-
-          echo "============================== ls pwd"
-          pwd
-
           # Create a compressed archive of the contents of the Release directory
-          zip -r llama-${{ steps.tag.outputs.name }}-bin-mac-x86.zip ./*
+          zip -r llama-${{ steps.tag.outputs.name }}-bin-mac-x86.zip ./build/bin/*
 
-          echo "============================== ls pwd"
-          pwd
+          echo "============================== ls"
+          ls
         
       - name: Upload artifacts
         if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
