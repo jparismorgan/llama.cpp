@@ -23,7 +23,8 @@ ARG ROCM_DOCKER_ARCH=\
     gfx1101 \
     gfx1102
 
-COPY requirements.txt requirements.txt
+COPY requirements.txt   requirements.txt
+COPY requirements       requirements
 
 RUN pip install --upgrade pip setuptools wheel \
     && pip install -r requirements.txt
@@ -39,6 +40,6 @@ ENV LLAMA_HIPBLAS=1
 ENV CC=/opt/rocm/llvm/bin/clang
 ENV CXX=/opt/rocm/llvm/bin/clang++
 
-RUN make
+RUN make -j$(nproc) main
 
 ENTRYPOINT [ "/app/main" ]

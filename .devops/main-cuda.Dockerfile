@@ -20,12 +20,15 @@ COPY . .
 
 # Set nvcc architecture
 ENV CUDA_DOCKER_ARCH=${CUDA_DOCKER_ARCH}
-# Enable cuBLAS
-ENV LLAMA_CUBLAS=1
+# Enable CUDA
+ENV LLAMA_CUDA=1
 
-RUN make
+RUN make -j$(nproc) main
 
 FROM ${BASE_CUDA_RUN_CONTAINER} as runtime
+
+RUN apt-get update && \
+    apt-get install -y libgomp1
 
 COPY --from=build /app/main /main
 
